@@ -29,6 +29,7 @@
       "src": "/screenshots/mobile-screenshot.jpg",
       "sizes": "720x1640",
       "type": "image/jpeg",
+      "form_factor": "narrow",
       "label": "Mobile view of My App"
     }
   ]

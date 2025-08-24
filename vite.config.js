@@ -8,8 +8,13 @@ export default defineConfig({
   tailwindcss(),
   VitePWA({
     registerType: 'autoUpdate',
-    useCredentials: true,
-    manifestFilename: 'manifest.webmanifest'
+    injectRegister: 'auto',
+    workbox: {
+      globPatterns: ['**/*.{js,css,html,ico,png,svg,webmanifest}']
+    },
+    devOptions: {
+      enabled: true
+    }
   })
   ]
 })
