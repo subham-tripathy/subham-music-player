@@ -1,6 +1,8 @@
 {
   "name": "Subham's Music Player",
   "short_name": "Music Player",
+  "description": "A beautiful music player app",
+  "id": "/",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -9,28 +11,26 @@
     {
       "src": "/pwa-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "/pwa-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "/screenshots/desktop-screenshot.png",
-      "sizes": "1366x768",
       "type": "image/png",
-      "form_factor": "wide",
-      "label": "Desktop view of My App"
+      "purpose": "any"
     },
     {
-      "src": "/screenshots/mobile-screenshot.jpg",
-      "sizes": "720x1640",
-      "type": "image/jpeg",
-      "form_factor": "narrow",
-      "label": "Mobile view of My App"
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
