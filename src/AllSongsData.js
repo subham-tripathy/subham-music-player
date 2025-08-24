@@ -8,7 +8,7 @@ export const playlist = [
     },
     {
         id: 1,
-        title: "Besharam Title Track",
+        title: "Naam Apun-ka-jaani",
         duration: "3:45",
         cover: "/assets/covers/makkhi-naam-apun-ka-jaani.jpg",
         audio: "/assets/songs/makkhi-naam-apun-ka-jaani.mp3"

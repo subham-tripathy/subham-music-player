@@ -65,21 +65,6 @@ const MusicPlayer = () => {
     setCurrentTime(newTime);
   };
 
-  const handleVolumeChange = (e) => {
-    const newVolume = e.target.value / 100;
-    setVolume(newVolume);
-    if (audioRef.current) {
-      audioRef.current.volume = newVolume;
-    }
-  };
-
-  const toggleMute = () => {
-    setIsMuted(!isMuted);
-    if (audioRef.current) {
-      audioRef.current.volume = isMuted ? volume : 0;
-    }
-  };
-
   const toggleShuffle = () => {
     setIsShuffled(!isShuffled);
   };
@@ -115,11 +100,16 @@ const MusicPlayer = () => {
     audio.addEventListener('ended', handleEnded);
     audio.volume = volume;
 
+    audio.play()
+      .then(() => setIsPlaying(true))
+      .catch(() => setIsPlaying(false));
+
     return () => {
       audio.removeEventListener('timeupdate', updateTime);
       audio.removeEventListener('loadedmetadata', updateDuration);
       audio.removeEventListener('ended', handleEnded);
     };
+
   }, [currentTrack, repeatMode, volume]);
 
   const currentSong = playlist[currentTrack];
