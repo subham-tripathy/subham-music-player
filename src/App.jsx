@@ -11,7 +11,6 @@ import {
 import { playlist } from './AllSongsData';
 
 const MusicPlayer = () => {
-  // Sample music data - replace with actual files from /src/assets/musics and /src/assets/covers
 
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -53,6 +52,8 @@ const MusicPlayer = () => {
   };
 
   const previousTrack = () => {
+    if (isPlaying)
+      setIsPlaying(!isPlaying);
     setCurrentTrack((prev) => (prev - 1 + playlist.length) % playlist.length);
   };
 
@@ -124,13 +125,13 @@ const MusicPlayer = () => {
   const currentSong = playlist[currentTrack];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center p-4">
       <div className="w-full max-w-md mx-auto">
         {/* Main Player Card */}
         <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 shadow-2xl border border-white/20">
           {/* Album Art */}
           <div className="relative mb-8">
-            <div className="w-72 h-72 mx-auto rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 shadow-2xl overflow-hidden">
+            <div className="w-72 h-72 mx-auto rounded-2xl bg-gradient-to-br from-blue-500 to-pink-500 shadow-2xl overflow-hidden">
               <img src={currentSong.cover} alt="cover-art" />
             </div>
           </div>
@@ -148,7 +149,7 @@ const MusicPlayer = () => {
               onClick={handleProgressChange}
             >
               <div
-                className="h-full bg-gradient-to-r from-purple-400 to-pink-400 rounded-full transition-all duration-100"
+                className="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full transition-all duration-100"
                 style={{ width: `${(currentTime / duration) * 100 || 0}%` }}
               />
             </div>
@@ -162,7 +163,7 @@ const MusicPlayer = () => {
           <div className="flex items-center justify-center space-x-6">
             <button
               onClick={toggleShuffle}
-              className={`p-3 rounded-full transition-all ${isShuffled ? 'bg-purple-500 text-white' : 'bg-white/10 text-white/70 hover:bg-white/20'}`}
+              className={`p-3 rounded-full transition-all ${isShuffled ? 'bg-blue-500 text-white' : 'bg-white/10 text-white/70 hover:bg-white/20'}`}
             >
               <Shuffle className="w-5 h-5" />
             </button>
@@ -176,7 +177,7 @@ const MusicPlayer = () => {
 
             <button
               onClick={togglePlayPause}
-              className="p-6 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg"
+              className="p-6 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 text-white hover:from-blue-500 hover:to-blue-700 transition-all shadow-lg"
             >
               {isPlaying ? <Pause className="w-8 h-8" /> : <Play className="w-8 h-8 ml-1" />}
             </button>
@@ -190,7 +191,7 @@ const MusicPlayer = () => {
 
             <button
               onClick={toggleRepeat}
-              className={`p-3 rounded-full transition-all relative ${repeatMode > 0 ? 'bg-purple-500 text-white' : 'bg-white/10 text-white/70 hover:bg-white/20'}`}
+              className={`p-3 rounded-full transition-all relative ${repeatMode > 0 ? 'bg-blue-500 text-white' : 'bg-white/10 text-white/70 hover:bg-white/20'}`}
             >
               <Repeat className="w-5 h-5" />
               {repeatMode === 2 && (
@@ -210,12 +211,12 @@ const MusicPlayer = () => {
                   key={song.id}
                   onClick={() => selectTrack(index)}
                   className={`w-full p-3 rounded-xl text-left transition-all ${index === currentTrack
-                    ? 'bg-purple-500/30 border border-purple-400/50'
+                    ? 'bg-blue-500/30 border border-blue-400/50'
                     : 'bg-white/5 hover:bg-white/10'
                     }`}
                 >
                   <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-gradient-to-br from-purple-400 to-pink-400 rounded-lg flex items-center justify-center">
+                    <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
                       <Music className="w-4 h-4 text-white" />
                     </div>
                     <div className="flex-1 min-w-0">
