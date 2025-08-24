@@ -1,17 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import {
   Play,
   Pause,
   SkipBack,
   SkipForward,
-  Volume2,
-  VolumeX,
   Shuffle,
   Repeat,
-  List,
-  Heart,
   Music,
-  Download
 } from 'lucide-react';
 import { playlist } from './AllSongsData';
 
@@ -27,7 +22,6 @@ const MusicPlayer = () => {
   const [isShuffled, setIsShuffled] = useState(false);
   const [repeatMode, setRepeatMode] = useState(0); // 0: off, 1: all, 2: one
   const [showPlaylist, setShowPlaylist] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
 
   const audioRef = useRef(null);
   const progressRef = useRef(null);
@@ -139,12 +133,6 @@ const MusicPlayer = () => {
                 <Music className="w-24 h-24 text-white/60" />
               </div>
             </div>
-            <button
-              onClick={() => setIsLiked(!isLiked)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-black/30 backdrop-blur-sm border border-white/20 hover:bg-black/40 transition-all"
-            >
-              <Heart className={`w-5 h-5 ${isLiked ? 'text-red-500 fill-current' : 'text-white'}`} />
-            </button>
           </div>
 
           {/* Song Info */}
@@ -172,7 +160,7 @@ const MusicPlayer = () => {
           </div>
 
           {/* Control Buttons */}
-          <div className="flex items-center justify-center space-x-6 mb-8">
+          <div className="flex items-center justify-center space-x-6">
             <button
               onClick={toggleShuffle}
               className={`p-3 rounded-full transition-all ${isShuffled ? 'bg-purple-500 text-white' : 'bg-white/10 text-white/70 hover:bg-white/20'}`}
@@ -211,34 +199,6 @@ const MusicPlayer = () => {
               )}
             </button>
           </div>
-
-          {/* Volume Control */}
-          <div className="flex items-center space-x-4 mb-6">
-            <button onClick={toggleMute} className="text-white/70 hover:text-white">
-              {isMuted || volume === 0 ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
-            </button>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={isMuted ? 0 : volume * 100}
-              onChange={handleVolumeChange}
-              className="flex-1 h-2 bg-white/20 rounded-full appearance-none cursor-pointer slider"
-            />
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex justify-center space-x-4">
-            <button
-              onClick={() => setShowPlaylist(!showPlaylist)}
-              className="p-3 rounded-full bg-white/10 text-white/70 hover:bg-white/20 transition-all"
-            >
-              <List className="w-5 h-5" />
-            </button>
-            <button className="p-3 rounded-full bg-white/10 text-white/70 hover:bg-white/20 transition-all">
-              <Download className="w-5 h-5" />
-            </button>
-          </div>
         </div>
 
         {/* Playlist */}
@@ -273,7 +233,7 @@ const MusicPlayer = () => {
       </div>
 
       {/* Hidden Audio Element */}
-      <audio ref={audioRef} src={currentSong.audio} />
+      <audio ref={audioRef} src={currentSong.audio} className='hidden'/>
 
       <style>{`
         .slider::-webkit-slider-thumb {
