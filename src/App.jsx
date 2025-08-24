@@ -46,6 +46,8 @@ const MusicPlayer = () => {
       const randomIndex = Math.floor(Math.random() * playlist.length);
       setCurrentTrack(randomIndex);
     } else {
+      if (isPlaying)
+        setIsPlaying(!isPlaying);
       setCurrentTrack((prev) => (prev + 1) % playlist.length);
     }
   };
@@ -129,16 +131,13 @@ const MusicPlayer = () => {
           {/* Album Art */}
           <div className="relative mb-8">
             <div className="w-72 h-72 mx-auto rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 shadow-2xl overflow-hidden">
-              <div className="w-full h-full bg-black/20 flex items-center justify-center">
-                <Music className="w-24 h-24 text-white/60" />
-              </div>
+              <img src={currentSong.cover} alt="cover-art" />
             </div>
           </div>
 
           {/* Song Info */}
           <div className="text-center mb-8">
             <h2 className="text-2xl font-bold text-white mb-2">{currentSong.title}</h2>
-            <p className="text-white/70 text-lg">{currentSong.artist}</p>
           </div>
 
           {/* Progress Bar */}
@@ -211,8 +210,8 @@ const MusicPlayer = () => {
                   key={song.id}
                   onClick={() => selectTrack(index)}
                   className={`w-full p-3 rounded-xl text-left transition-all ${index === currentTrack
-                      ? 'bg-purple-500/30 border border-purple-400/50'
-                      : 'bg-white/5 hover:bg-white/10'
+                    ? 'bg-purple-500/30 border border-purple-400/50'
+                    : 'bg-white/5 hover:bg-white/10'
                     }`}
                 >
                   <div className="flex items-center space-x-3">
@@ -233,7 +232,7 @@ const MusicPlayer = () => {
       </div>
 
       {/* Hidden Audio Element */}
-      <audio ref={audioRef} src={currentSong.audio} className='hidden'/>
+      <audio ref={audioRef} src={currentSong.audio} className='hidden' />
 
       <style>{`
         .slider::-webkit-slider-thumb {
